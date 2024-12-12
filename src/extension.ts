@@ -32,9 +32,11 @@ export function activate(context: vscode.ExtensionContext) {
 			if (e) {
 				await execShell(`git add . && git commit -m "${e}"`);
 				vscode.window
-					.showInformationMessage('Commited', ...['test', 'taco', 'cheeseburger'])
+					.showInformationMessage('Commited', ...['Push', 'Cancel'])
 					.then(selection => {
-						console.log(selection);
+						if (selection === "Push") {
+							console.log(selection);
+						}
 					});
 			} else {
 				vscode.window.showInformationMessage(`Aborted`);
