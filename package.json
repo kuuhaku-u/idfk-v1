@@ -15,8 +15,13 @@
     "commands": [
       {
         "command": "idfk-v1.helloWorld",
-        "title": "idfk"
+        "title": "idfk:commit"
+      },
+      {
+        "command": "idfk-v1.log",
+        "title": "idfk:log"
       }
+
     ]
   },
   "scripts": {

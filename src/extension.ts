@@ -33,8 +33,20 @@ export function activate(context: vscode.ExtensionContext) {
 		})
 
 	});
+	const log = vscode.commands.registerCommand('idfk-v1.log', async () => {
+		// The code you place here will be executed every time your command is executed
+		// Display a message box to the user
+		// vscode.window.showInputBox().then(async e => {
+		// const currentDir = 
+		await execShell(`git log`);
+		// vscode.window.showInformationMessage(`Done`);
+		// })
+
+	});
 
 	context.subscriptions.push(disposable);
+	context.subscriptions.push(log);
+
 }
 
 // This method is called when your extension is deactivated
