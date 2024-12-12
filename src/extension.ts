@@ -36,6 +36,8 @@ export function activate(context: vscode.ExtensionContext) {
 					.then(selection => {
 						if (selection === "Push") {
 							console.log(selection);
+						} else {
+							console.log("CANCELED");
 						}
 					});
 			} else {
