@@ -50,7 +50,10 @@ export function activate(context: vscode.ExtensionContext) {
 		execShell('git log --oneline')
 			.then(log => {
 				if (log) {
-					vscode.window.showInformationMessage(`Git Log:\n${log}`);
+					const outputChannel = vscode.window.createOutputChannel('Git Log');
+					outputChannel.appendLine('Git Log:');
+					outputChannel.appendLine(log);
+					outputChannel.show();
 				} else {
 					vscode.window.showInformationMessage('No commit history found.');
 				}
@@ -59,6 +62,8 @@ export function activate(context: vscode.ExtensionContext) {
 				vscode.window.showErrorMessage(`Error fetching Git log: ${err.message}`);
 			});
 	});
+
+
 
 	context.subscriptions.push(commitDisposable, logDisposable);
 }
