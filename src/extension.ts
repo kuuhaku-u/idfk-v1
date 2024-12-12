@@ -11,11 +11,10 @@ const execShell = (cmd: string) =>
 		});
 	});
 
-// This method is called when your extension is activated
 export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "idfk-v1" is now active!');
 
-	const disposable = vscode.commands.registerCommand('idfk-v1.helloWorld', () => {
+	const commitDisposable = vscode.commands.registerCommand('idfk-v1.helloWorld', () => {
 		execShell('git status --porcelain')
 			.then(status => {
 				if (!status) {
@@ -47,7 +46,23 @@ export function activate(context: vscode.ExtensionContext) {
 			});
 	});
 
-	context.subscriptions.push(disposable);
+	const logDisposable = vscode.commands.registerCommand('idfk-v1.showGitLog', () => {
+		execShell('git log --oneline')
+			.then(log => {
+				if (log) {
+					vscode.window.showInformationMessage(`Git Log:\n${log}`);
+				} else {
+					vscode.window.showInformationMessage('No commit history found.');
+				}
+			})
+			.catch(err => {
+				vscode.window.showErrorMessage(`Error fetching Git log: ${err.message}`);
+			});
+	});
+
+	context.subscriptions.push(commitDisposable, logDisposable);
 }
 
-export function deactivate() { }
+export function deactivate() {
+	// Clean up any disposables if needed
+}

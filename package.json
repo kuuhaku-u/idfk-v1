@@ -9,7 +9,10 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:idfk-v1.helloWorld",
+    "onCommand:idfk-v1.showGitLog"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
@@ -18,10 +21,9 @@
         "title": "idfk:commit"
       },
       {
-        "command": "idfk-v1.log",
+        "command": "idfk-v1.showGitLog",
         "title": "idfk:log"
       }
-
     ]
   },
   "scripts": {
