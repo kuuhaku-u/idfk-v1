@@ -11,6 +11,7 @@ const execShell = (cmd: string) =>
 		});
 	});
 
+	
 export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "idfk-v1" is now active!');
 
