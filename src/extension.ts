@@ -29,8 +29,17 @@ export function activate(context: vscode.ExtensionContext) {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
 		vscode.window.showInputBox().then(async e => {
-			const currentDir = await execShell(`git add . && git commit -m "${e}"`);
-			vscode.window.showInformationMessage(`Commited`);
+			if (e) {
+				await execShell(`git add . && git commit -m "${e}"`);
+				vscode.window
+					.showInformationMessage('Commited', ...['test', 'taco', 'cheeseburger'])
+					.then(selection => {
+						console.log(selection);
+					});
+			} else {
+				vscode.window.showInformationMessage(`Aborted`);
+
+			}
 		})
 
 	});
