@@ -1,12 +1,13 @@
 import * as vscode from 'vscode';
 import { LogTreeDataProvider } from './Logs';
-import { commitDisposable, logDisposable, commitInfoDisposable, showCommitDetailsCommand } from './Commands';
-
+import { commitDisposable, logDisposable, commitInfoDisposable, showCommitDetailsCommand, editConfigCommand } from './Commands';
+import { GitConfigTreeDataProvider } from './Conifg'
 export function activate(context: vscode.ExtensionContext) {
 	vscode.window.registerTreeDataProvider('JSON', new TreeDataProvider());
 	vscode.window.registerTreeDataProvider('logView', new LogTreeDataProvider());
+	vscode.window.registerTreeDataProvider('gitConfigView', new  GitConfigTreeDataProvider());
 
-	context.subscriptions.push(commitDisposable, logDisposable, commitInfoDisposable, showCommitDetailsCommand);
+	context.subscriptions.push(commitDisposable, logDisposable, commitInfoDisposable, showCommitDetailsCommand, editConfigCommand);
 
 }
 

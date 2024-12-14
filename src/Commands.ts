@@ -1,6 +1,10 @@
 import { execShell } from "./utils";
 import * as vscode from 'vscode';
-import * as path from 'path';
+import * as child_process from 'child_process';
+import * as util from 'util';
+
+const exec = util.promisify(child_process.exec);
+import { GitConfigTreeDataProvider } from "./Conifg";
 
 export const commitDisposable = vscode.commands.registerCommand('idfk-v1.helloWorld', () => {
     execShell('git status --porcelain')
@@ -82,4 +86,25 @@ export const showCommitDetailsCommand = vscode.commands.registerCommand('idfk-v1
 });
 
 
+
+
+export const editConfigCommand = vscode.commands.registerCommand('idfk-v1.editConfig', async (configItem: any) => {
+    const gitConfigProvider = new GitConfigTreeDataProvider();
+
+    const input = await vscode.window.showInputBox({
+        value: configItem.value,
+        prompt: `Enter new value for ${configItem.label}`,
+    });
+
+    if (input === undefined || input === configItem.value) return;
+
+    try {
+        const scope = configItem.configScope === 'global' ? '--global' : '--local';
+        await exec(`git config ${scope} ${configItem.configKey} "${input}"`);
+        vscode.window.showInformationMessage(`${configItem.label} updated to ${input}`);
+        gitConfigProvider.loadGitConfig(); // Refresh the config view
+    } catch (err: any) {
+        vscode.window.showErrorMessage(`Error updating Git config: ${err.message}`);
+    }
+});
 

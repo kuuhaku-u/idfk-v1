@@ -35,7 +35,11 @@
 				{
 					"id": "logView",
 					"name": "Logs"
-				  }
+				},
+				{
+					"id": "gitConfigView",
+					"name": "Git Config"
+				}
 			]
 		},
 		"commands": [
@@ -50,7 +54,11 @@
 			{
 				"command": "idfk-v1.showCommitDetails",
 				"title": "idfk:showCommitDetails"
-			}
+			},
+			{
+				"command": "idfk-v1.editConfig",
+				"title": "Edit Git Config"
+			  }
 		]
 	},
 	"scripts": {

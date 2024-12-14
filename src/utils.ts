@@ -1,5 +1,4 @@
-import * as cp from "child_process";
-
+import * as cp from 'child_process';
 
 export const execShell = (cmd: string) =>
     new Promise<string>((resolve, reject) => {
