@@ -14,7 +14,6 @@ class TreeDataProvider implements vscode.TreeDataProvider<TreeItem> {
 	onDidChangeTreeData?: vscode.Event<TreeItem | null | undefined> | undefined;
 
 	data: TreeItem[];
-	logs: any[];
 	constructor() {
 		this.data = [
 			new TreeItem('cars', [
@@ -30,7 +29,6 @@ class TreeDataProvider implements vscode.TreeDataProvider<TreeItem> {
 				])
 			])
 		];
-		this.logs = []
 	}
 
 	getTreeItem(element: TreeItem): vscode.TreeItem | Thenable<vscode.TreeItem> {
