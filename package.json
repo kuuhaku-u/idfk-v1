@@ -15,6 +15,7 @@
 	"categories": [
 		"Other"
 	],
+	"activationEvents": [],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"viewsContainers": {
@@ -58,7 +59,11 @@
 			{
 				"command": "idfk-v1.editConfig",
 				"title": "Edit Git Config"
-			  }
+			},
+			{
+				"command": "idfk-v1.showUnPushed",
+				"title": "show Un-Pushed"
+			}
 		]
 	},
 	"scripts": {

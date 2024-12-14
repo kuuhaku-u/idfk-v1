@@ -108,3 +108,18 @@ export const editConfigCommand = vscode.commands.registerCommand('idfk-v1.editCo
     }
 });
 
+
+export const showUnPushed = vscode.commands.registerCommand('idfk-v1.showUnPushed', async (configItem: any) => {
+
+    execShell(`git cherry -v @{u}`)
+        .then((logDetails) => {
+            vscode.window.showInformationMessage(`UnPushed Commit Details: ${logDetails}`);
+        })
+        .catch((err) => {
+            vscode.window.showErrorMessage(`Error fetching commit details: ${err.message}`);
+        });
+
+
+});
+
+
