@@ -1,53 +1,92 @@
 {
-  "name": "idfk-v1",
-  "displayName": "idfk/v1",
-  "description": "",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.96.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [],
-  "main": "./dist/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "idfk-v1.helloWorld",
-        "title": "idfk:commit"
-      },
-      {
-        "command": "idfk-v1.showGitLog",
-        "title": "idfk:log"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run package",
-    "compile": "webpack",
-    "watch": "webpack --watch",
-    "package": "webpack --mode production --devtool hidden-source-map",
-    "compile-tests": "tsc -p . --outDir out",
-    "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "npm run compile-tests && npm run compile && npm run lint",
-    "lint": "eslint src",
-    "test": "vscode-test"
-  },
-  
-  "devDependencies": {
-    "@types/vscode": "^1.96.0",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "20.x",
-    "@typescript-eslint/eslint-plugin": "^8.17.0",
-    "@typescript-eslint/parser": "^8.17.0",
-    "eslint": "^9.16.0",
-    "typescript": "^5.7.2",
-    "ts-loader": "^9.5.1",
-    "webpack": "^5.95.0",
-    "webpack-cli": "^5.1.4",
-    "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1"
-  },
-    "publisher": "kuuhaku"
+	"name": "idfk-v1",
+	"displayName": "idfk/v1",
+	"description": "",
+	"version": "0.0.1",
+	"private": true,
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"engines": {
+		"vscode": "^1.96.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "exampleContainer",
+					"title": "Example Container",
+					"icon": "media/dep.svg"
+				}
+			]
+		},
+		"views": {
+			"exampleContainer": [
+				{
+					"id": "JSON",
+					"name": "Example View"
+				},
+				{
+					"id": "logView",
+					"name": "Logs"
+				  }
+			]
+		},
+		"commands": [
+			{
+				"command": "idfk-v1.helloWorld",
+				"title": "idfk:commit"
+			},
+			{
+				"command": "idfk-v1.showGitLog",
+				"title": "idfk:log"
+			},
+			{
+				"command": "idfk-v1.showCommitDetails",
+				"title": "idfk:showCommitDetails"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run package",
+		"compile": "webpack",
+		"watch": "webpack --watch",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"compile-tests": "tsc -p . --outDir out",
+		"watch-tests": "tsc -p . -w --outDir out",
+		"pretest": "npm run compile-tests && npm run compile && npm run lint",
+		"lint": "eslint src",
+		"test": "vscode-test"
+	},
+	"devDependencies": {
+		"@types/mocha": "^10.0.10",
+		"@types/mkdirp": "^0.5.2",
+		"@types/rimraf": "^2.0.2",
+		"@types/node": "20.x",
+		"@types/vscode": "^1.96.0",
+		"@typescript-eslint/eslint-plugin": "^8.17.0",
+		"@typescript-eslint/parser": "^8.17.0",
+		"@vscode/test-cli": "^0.0.10",
+		"@vscode/test-electron": "^2.4.1",
+		"eslint": "^9.16.0",
+		"ts-loader": "^9.5.1",
+		"typescript": "^5.7.2",
+		"webpack": "^5.95.0",
+		"webpack-cli": "^5.1.4"
+	},
+	"publisher": "kuuhaku",
+	"dependencies": {
+		"ftp": "^0.3.10",
+		"jsonc-parser": "^0.4.2",
+		"minimist": "^1.2.6",
+		"mkdirp": "^0.5.1",
+		"rimraf": "^2.6.2",
+		"vscode-nls": "^5.2.0"
+	}
 }
